@@ -1,5 +1,19 @@
+import ChatWindow from "../components/ChatWindow";
+import StylePanel from "../components/ChatStylePanel";
+
 export default function Base() {
     return (
-        <h1 className="text-secondary  mx-auto" >Initiating Project</h1>
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="w-full md:mx-10 flex flex-col md:flex-row ">
+
+                <div className="w-full md:w-3/5 border-r-2 border-r-gray-200 p-4">
+                    <StylePanel />
+                </div>
+
+                <div className="w-full md:w-2/5 p-4 flex justify-center">
+                    <ChatWindow />
+                </div>
+            </div>
+        </div>
     );
 }
