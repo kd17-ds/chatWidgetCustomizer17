@@ -1,7 +1,24 @@
-import { useTheme } from "../contexts/ThemeContext";
+import { useState } from "react";
+import { useGeneral } from "../contexts/GeneralContext";
+import { FiUpload } from "react-icons/fi";
 
 export default function ChatStylePanel() {
-    const { theme, setTheme } = useTheme();
+    const { theme, setTheme, setProfilePic, setChatIcon } = useGeneral();
+    const [modalOpen, setModalOpen] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+    const [upload, setUpload] = useState(null);
+
+    const handleOpenModal = (target) => {
+        setUpload(target);
+        setInputValue("");
+        setModalOpen(true);
+    };
+
+    const handleSubmit = () => {
+        if (upload === "profile") setProfilePic(inputValue);
+        if (upload === "icon") setChatIcon(inputValue);
+        setModalOpen(false);
+    };
 
     return (
         <div className="min-h-screen max-w-3xl mx-auto my-10">
@@ -62,6 +79,75 @@ export default function ChatStylePanel() {
                     </button>
                 </div>
             </div>
+
+            {/* Upload Section */}
+            <div className="mt-6 space-y-6 border-b-2 border-gray-200 pb-8">
+
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h3 className="text-base font-medium mb-3 text-gray-500">Profile Picture</h3>
+                        <p className="text-xs text-gray-400">
+                            Upload a profile picture for your bot.
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={() => handleOpenModal("profile")}
+                        className="px-3 py-1.5 border text-gray-800 hover:cursor-pointer rounded-lg text-sm flex items-center gap-2 hover:bg-gray-100"
+                    >
+                        <FiUpload className="text-gray-800" />
+                        Upload
+                    </button>
+                </div>
+
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h3 className="text-base font-medium mb-3 text-gray-500">Chat Icon</h3>
+                        <p className="text-xs text-gray-400">
+                            Set your icon to display on chat.
+                        </p>
+                    </div>
+                    <button
+                        onClick={() => handleOpenModal("icon")}
+                        className="px-3 py-1.5 border text-gray-800 hover:cursor-pointer rounded-lg text-sm flex items-center gap-2 hover:bg-gray-100"
+                    >
+                        <FiUpload className="text-gray-800" />
+                        Upload
+                    </button>
+                </div>
+            </div>
+
+            {/* Modal */}
+            {modalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+                        <h3 className="text-lg font-medium mb-4">
+                            {upload === "profile" ? "Upload Profile Picture" : "Upload Chat Icon"}
+                        </h3>
+                        <input
+                            type="text"
+                            placeholder="Enter image URL"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            className="w-full border rounded-md p-2 mb-4 text-sm"
+                        />
+                        <div className="flex justify-end gap-2">
+                            <button
+                                onClick={() => setModalOpen(false)}
+                                className="px-4 py-2 text-sm border hover:cursor-pointer rounded-md"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleSubmit}
+                                className="px-4 py-2 text-sm bg-black hover:cursor-pointer text-white rounded-md"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

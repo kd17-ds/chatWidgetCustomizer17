@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { FiRefreshCw, FiMaximize2, FiMinimize2, FiSend, FiCommand } from "react-icons/fi";
 import { HiChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
-import { useTheme } from "../contexts/ThemeContext";
+import { useGeneral } from "../contexts/GeneralContext";
 
 export default function ChatWindow() {
     const [messages, setMessages] = useState([]);
     const [expanded, setExpanded] = useState(false);
     const [input, setInput] = useState("");
     const [isOpen, setIsOpen] = useState(false);
-    const { theme } = useTheme();
+    const { theme, profilePic, chatIcon } = useGeneral();
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
@@ -70,7 +70,7 @@ export default function ChatWindow() {
                     >
                         <div className="flex items-center gap-3">
                             <img
-                                src="https://i.pravatar.cc/40"
+                                src={profilePic || "https://i.pravatar.cc/40"}
                                 alt="Profile"
                                 className="w-9 h-9 rounded-full border"
                             />
@@ -102,12 +102,11 @@ export default function ChatWindow() {
                         {messages.map((msg, i) => (
                             <div
                                 key={i}
-                                className={`flex items-end ${msg.sender === "user" ? "justify-end" : "justify-start"
-                                    }`}
+                                className={`flex items-end ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                             >
                                 {msg.sender !== "user" && (
                                     <img
-                                        src="https://i.pravatar.cc/40"
+                                        src={profilePic || "https://i.pravatar.cc/40"}
                                         alt="Profile"
                                         className="w-9 h-9 rounded-full border mr-2"
                                     />
@@ -127,9 +126,9 @@ export default function ChatWindow() {
 
                                 {msg.sender === "user" && (
                                     <img
-                                        src="https://i.pravatar.cc/40"
-                                        alt="Profile"
-                                        className="w-9 h-9 rounded-full border ml-2"
+                                        src={chatIcon || "https://i.pravatar.cc/40"}
+                                        alt="User"
+                                        className="w-8 h-8 rounded-full ml-2 object-cover"
                                     />
                                 )}
                             </div>
@@ -176,6 +175,3 @@ export default function ChatWindow() {
         </div>
     );
 }
-
-
-
