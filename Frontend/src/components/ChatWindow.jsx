@@ -7,7 +7,6 @@ import Footer from "./chatWindowComponents/Footer";
 
 export default function ChatWindow() {
     const [messages, setMessages] = useState([]);
-    const [expanded, setExpanded] = useState(false);
     const [input, setInput] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 
@@ -37,7 +36,7 @@ export default function ChatWindow() {
         setTimeout(() => {
             setMessages((prev) => [
                 ...prev,
-                { sender: "bot", text: "Hey, What Can I Help you with? " },
+                { sender: "bot", text: "Hey, What Can I Help you with?" },
             ]);
         }, 800);
     };
@@ -58,10 +57,8 @@ export default function ChatWindow() {
             {/* Toggle Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`fixed bottom-14 right-29 z-10 p-4 rounded-full shadow-lg hover:opacity-90 hover:cursor-pointer transition ${theme === "dark"
-                    ? "bg-gray-800 text-white"
-                    : "bg-black text-white"
-                    }`}
+                className={`fixed bottom-6 right-6 z-10 p-4 rounded-full shadow-lg hover:opacity-90 hover:cursor-pointer transition 
+                ${theme === "dark" ? "bg-gray-800 text-white" : "bg-black text-white"}`}
             >
                 <HiChatBubbleOvalLeftEllipsis className="text-2xl" />
             </button>
@@ -69,7 +66,7 @@ export default function ChatWindow() {
             {/* Chat Window */}
             {isOpen && (
                 <div
-                    className={`fixed bottom-32 right-30 flex flex-col h-[550px] border border-gray-200 shadow-lg overflow-hidden transition-all duration-300`}
+                    className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 flex flex-col border border-gray-200 shadow-lg overflow-hidden transition-all duration-300"
                     style={{
                         background: areaBg,
                         color: theme === "dark" ? "white" : "black",
@@ -77,13 +74,12 @@ export default function ChatWindow() {
                         fontFamily,
                         width: `${widgetWidth}px`,
                         borderRadius: `${cornerRadius}px`,
+                        height: "550px",
                     }}
                 >
                     <Header
                         theme={theme}
                         profilePic={profilePic}
-                        expanded={expanded}
-                        setExpanded={setExpanded}
                         handleRefresh={handleRefresh}
                         headerBg={headerBg}
                     />

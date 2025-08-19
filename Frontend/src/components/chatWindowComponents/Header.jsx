@@ -1,10 +1,8 @@
-import { FiRefreshCw, FiMaximize2, FiMinimize2 } from "react-icons/fi";
+import { FiRefreshCw } from "react-icons/fi";
 
 export default function Header({
     theme,
     profilePic,
-    expanded,
-    setExpanded,
     handleRefresh,
     headerBg,
 }) {
@@ -27,22 +25,6 @@ export default function Header({
                     className={`hover:cursor-pointer text-xl ${theme === "dark" ? "text-white" : "text-gray-600"
                         }`}
                 />
-                <button
-                    onClick={() => setExpanded(!expanded)}
-                    className="p-1 hover:cursor-pointer"
-                >
-                    {expanded ? (
-                        <FiMinimize2
-                            className={`text-xl ${theme === "dark" ? "text-white" : "text-gray-600"
-                                }`}
-                        />
-                    ) : (
-                        <FiMaximize2
-                            className={`text-xl ${theme === "dark" ? "text-white" : "text-gray-600"
-                                }`}
-                        />
-                    )}
-                </button>
             </div>
         </div>
     );
