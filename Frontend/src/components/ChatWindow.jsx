@@ -21,6 +21,11 @@ export default function ChatWindow() {
         botTextColor,
         headerBg,
         areaBg,
+        showPoweredBy,
+        fontSize,
+        fontFamily,
+        widgetWidth,
+        cornerRadius,
     } = useGeneral();
 
     const handleSend = () => {
@@ -64,11 +69,14 @@ export default function ChatWindow() {
             {/* Chat Window */}
             {isOpen && (
                 <div
-                    className={`fixed bottom-32 right-30 flex flex-col h-[550px] border border-gray-200 shadow-lg overflow-hidden transition-all duration-300 rounded-2xl ${expanded ? "w-[420px]" : "w-[320px]"
-                        }`}
+                    className={`fixed bottom-32 right-30 flex flex-col h-[550px] border border-gray-200 shadow-lg overflow-hidden transition-all duration-300`}
                     style={{
                         background: areaBg,
                         color: theme === "dark" ? "white" : "black",
+                        fontSize: `${fontSize}px`,
+                        fontFamily,
+                        width: `${widgetWidth}px`,
+                        borderRadius: `${cornerRadius}px`,
                     }}
                 >
                     <Header
@@ -89,6 +97,8 @@ export default function ChatWindow() {
                         userTextColor={userTextColor}
                         botTextColor={botTextColor}
                         theme={theme}
+                        fontSize={fontSize}
+                        fontFamily={fontFamily}
                     />
 
                     <Footer
@@ -97,6 +107,7 @@ export default function ChatWindow() {
                         setInput={setInput}
                         handleKeyDown={handleKeyDown}
                         handleSend={handleSend}
+                        showPoweredBy={showPoweredBy}
                     />
                 </div>
             )}

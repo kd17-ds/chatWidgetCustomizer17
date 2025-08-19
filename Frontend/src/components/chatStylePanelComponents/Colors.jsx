@@ -6,7 +6,8 @@ export default function Colors({
     userTextColor, setUserTextColor,
     botTextColor, setBotTextColor,
     headerBg, setHeaderBg,
-    areaBg, setAreaBg
+    areaBg, setAreaBg,
+    setShowPoweredBy, showPoweredBy
 }) {
 
     function getContrast(hex1, hex2) {
@@ -30,14 +31,28 @@ export default function Colors({
         <div className="mt-6 space-y-6 border-b-2 border-gray-200 pb-8">
             <h3 className="text-base font-medium mb-3 text-gray-500">Colors</h3>
 
-            {/* Sync Toggle Switch */}
             <div className="flex items-center justify-between mb-4 px-3 py-2 rounded-md bg-gray-100">
+                <span className="text-sm text-gray-800 font-medium">
+                    Show "Powered by" line
+                </span>
+                <button
+                    onClick={() => setShowPoweredBy(!showPoweredBy)}
+                    className={`hover:cursor-pointer w-10 h-6 flex items-center rounded-full p-1 transition-colors ${showPoweredBy ? "bg-blue-500" : "bg-gray-300"}`}
+                >
+                    <div
+                        className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${showPoweredBy ? "translate-x-4" : "translate-x-0"}`}
+                    />
+                </button>
+            </div>
+
+            {/* Sync Text Color Switch */}
+            <div className="  flex items-center justify-between mb-4 px-3 py-2 rounded-md bg-gray-100">
                 <span className="text-sm text-gray-800 font-medium">
                     Sync text colors with bubble box
                 </span>
                 <button
                     onClick={() => setSyncColors(!syncColors)}
-                    className={`w-10 h-6 flex items-center rounded-full p-1 transition-colors ${syncColors ? "bg-blue-500" : "bg-gray-300"
+                    className={`hover:cursor-pointer w-10 h-6 flex items-center rounded-full p-1 transition-colors ${syncColors ? "bg-blue-500" : "bg-gray-300"
                         }`}
                 >
                     <div
@@ -47,7 +62,7 @@ export default function Colors({
                 </button>
             </div>
             {/* Sync User Msg Color with Header */}
-            <div className="flex items-center justify-between mb-4 px-3 py-2 rounded-md bg-gray-100">
+            <div className="  flex items-center justify-between mb-4 px-3 py-2 rounded-md bg-gray-100">
                 <span className="text-sm text-gray-800 font-medium">
                     Sync user message color with agent header
                 </span>
@@ -58,7 +73,7 @@ export default function Colors({
                             setUserBubbleColor(headerBg);
                         }
                     }}
-                    className={`w-10 h-6 flex items-center rounded-full p-1 transition-colors ${syncUserMsgWithHeader ? "bg-blue-500" : "bg-gray-300"
+                    className={`hover:cursor-pointer w-10 h-6 flex items-center rounded-full p-1 transition-colors ${syncUserMsgWithHeader ? "bg-blue-500" : "bg-gray-300"
                         }`}
                 >
                     <div

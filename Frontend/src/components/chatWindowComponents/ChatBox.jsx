@@ -9,6 +9,8 @@ export default function ChatBox({
     userTextColor,
     botTextColor,
     theme,
+    fontSize,
+    fontFamily,
 }) {
     const messagesEndRef = useRef(null);
 
@@ -25,6 +27,8 @@ export default function ChatBox({
                 scrollbarWidth: "thin",
                 scrollbarColor:
                     theme === "dark" ? "#4b5563 #1f2937" : "#d1d5db #ffffff",
+                fontSize: `${fontSize}px`,
+                fontFamily: fontFamily,
             }}
         >
             {messages.map((msg, i) => (
@@ -42,7 +46,7 @@ export default function ChatBox({
                     )}
 
                     <div
-                        className="max-w-[55%] break-words whitespace-pre-wrap p-3 rounded-2xl text-sm"
+                        className="max-w-[55%] break-words whitespace-pre-wrap p-3 rounded-2xl"
                         style={{
                             backgroundColor:
                                 msg.sender === "user"
@@ -52,6 +56,8 @@ export default function ChatBox({
                                 msg.sender === "user"
                                     ? userTextColor
                                     : botTextColor,
+                            fontSize: `${fontSize}px`,
+                            fontFamily: fontFamily,
                         }}
                     >
                         {msg.text}

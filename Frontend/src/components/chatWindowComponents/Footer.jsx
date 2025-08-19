@@ -6,25 +6,27 @@ export default function Footer({
     setInput,
     handleKeyDown,
     handleSend,
+    showPoweredBy,
 }) {
     return (
         <div>
-            <div
-                className={`text-xs text-center mt-2 p-1 flex items-center justify-center space-x-1 ${theme === "dark" ? "text-white" : "text-gray-400"
-                    }`}
-            >
-                <FiCommand
-                    className={`${theme === "dark" ? "text-white" : "text-gray-500"
-                        } text-lg`}
-                />
-                <span>Powered by YourBrand</span>
-            </div>
-
+            {showPoweredBy && (
+                <div
+                    className={`text-xs text-center mt-2 p-1 flex items-center justify-center space-x-1 ${theme === "dark" ? "text-white" : "text-gray-400"
+                        }`}
+                >
+                    <FiCommand
+                        className={`${theme === "dark" ? "text-white" : "text-gray-500"
+                            } text-lg`}
+                    />
+                    <span>Powered by YourBrand</span>
+                </div>
+            )}
             <div className="px-3 py-2 mb-2">
                 <div
                     className={`w-full flex items-center border shadow-sm rounded-full px-4 py-2 space-x-2 ${theme === "dark"
-                            ? "border-gray-700 bg-gray-800 text-white"
-                            : "border-gray-200 bg-white text-black"
+                        ? "border-gray-700 bg-gray-800 text-white"
+                        : "border-gray-200 bg-white text-black"
                         }`}
                 >
                     <textarea

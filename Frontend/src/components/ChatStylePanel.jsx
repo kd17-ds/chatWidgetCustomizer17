@@ -5,7 +5,8 @@ import Appearance from "./chatStylePanelComponents/Appearance";
 import UploadSec from "./chatStylePanelComponents/UploadSec";
 import Colors from "./chatStylePanelComponents/Colors";
 import Modal from "./chatStylePanelComponents/Modal";
-
+import Typography from "./chatStylePanelComponents/TypoGraphy";
+import Layout from "./chatStylePanelComponents/Layout";
 
 export default function ChatStylePanel() {
     const {
@@ -25,6 +26,16 @@ export default function ChatStylePanel() {
         headerBg,
         setAreaBg,
         setHeaderBg,
+        showPoweredBy,
+        setShowPoweredBy,
+        fontSize,
+        fontFamily,
+        setFontSize,
+        setFontFamily,
+        widgetWidth,
+        setWidgetWidth,
+        cornerRadius,
+        setCornerRadius
     } = useGeneral();
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -85,6 +96,17 @@ export default function ChatStylePanel() {
                 botTextColor={botTextColor} setBotTextColor={setBotTextColor}
                 headerBg={headerBg} setHeaderBg={setHeaderBg}
                 areaBg={areaBg} setAreaBg={setAreaBg}
+                showPoweredBy={showPoweredBy} setShowPoweredBy={setShowPoweredBy}
+            />
+
+            <Typography
+                fontSize={fontSize} setFontSize={setFontSize}
+                fontFamily={fontFamily} setFontFamily={setFontFamily}
+            />
+
+            <Layout
+                widgetWidth={widgetWidth} setWidgetWidth={setWidgetWidth}
+                cornerRadius={cornerRadius} setCornerRadius={setCornerRadius}
             />
 
             {modalOpen && (

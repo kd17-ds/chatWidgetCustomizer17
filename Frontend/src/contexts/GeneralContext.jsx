@@ -15,6 +15,13 @@ export function GeneralProvider({ children }) {
     const [headerBg, setHeaderBg] = useState("");
     const [areaBg, setAreaBg] = useState("");
 
+    const [showPoweredBy, setShowPoweredBy] = useState(true);
+
+    const [fontSize, setFontSize] = useState(14);
+    const [fontFamily, setFontFamily] = useState("Arial");
+    const [widgetWidth, setWidgetWidth] = useState(320);
+    const [cornerRadius, setCornerRadius] = useState(8);
+
     useEffect(() => {
         if (theme === "dark") {
             setHeaderBg("#1F2937");
@@ -36,7 +43,12 @@ export function GeneralProvider({ children }) {
                 userTextColor, setUserTextColor,
                 botTextColor, setBotTextColor,
                 headerBg, setHeaderBg,
-                areaBg, setAreaBg
+                areaBg, setAreaBg,
+                showPoweredBy, setShowPoweredBy,
+                fontSize, setFontSize,
+                fontFamily, setFontFamily,
+                widgetWidth, setWidgetWidth,
+                cornerRadius, setCornerRadius,
             }}
         >
             {children}
