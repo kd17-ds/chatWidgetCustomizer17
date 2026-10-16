@@ -1,7 +1,7 @@
 # 💬 Chat Widget
 
 A customizable **chat widget** built with **React + Tailwind CSS**, designed to be easily embedded into any website.  
-It supports theming, dynamic widget width, message handling, and can be hosted on **Netlify**.
+It supports theming, dynamic widget width, message handling, and can be hosted on **Netlify** for frontend.
 
 ---
 
